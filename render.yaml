@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: clinic-agent-python
+    runtime: docker
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      - key: APP_SECRET
+        generateValue: true
+      - key: DATABASE_PATH
+        value: /app/data/clinic.db
+      - key: OPENAI_API_KEY
+        sync: false
+    disk:
+      name: clinic-data
+      mountPath: /app/data
+      sizeGB: 1
